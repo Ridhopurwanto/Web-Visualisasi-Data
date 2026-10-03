@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h4 class="fw-bold">1. Struktur & Demografi Ketenagakerjaan (Topik Hierarki)</h4>
+        <p class="text-muted">Analisis komposisi tenaga kerja dan kualitas pendidikan berdasarkan demografi.</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Card Icicle -->
+    <div class="col-lg-6">
+        <div class="dashboard-card h-100">
+            <h5 class="card-title">Struktur Populasi Usia Kerja</h5>
+            <p class="card-subtitle">Warna merepresentasikan % Perubahan (Feb '26 vs Ags '25)</p>
+            <div id="icicle-chart" style="height: 500px; width: 100%;"></div>
+        </div>
+    </div>
+    
+    <!-- Card Treemap -->
+    <div class="col-lg-6">
+        <div class="dashboard-card h-100">
+            <h5 class="card-title">Demografi Pendidikan Tenaga Kerja</h5>
+            <p class="card-subtitle">Warna merepresentasikan tingkatan Ijazah Terakhir</p>
+            <div id="treemap-chart" style="height: 500px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4 mt-5">
+    <div class="col-12">
+        <h4 class="fw-bold">2. Analisis Spasial Ketenagakerjaan (Topik Geospasial)</h4>
+        <p class="text-muted">Peta Choropleth Tingkat Pengangguran Terbuka (TPT) dan Symbol Map TPAK (Layer Control).</p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="dashboard-card" style="padding: 0; overflow: hidden; border-radius: 12px;">
+            <!-- Memuat peta dari route Flask (/peta) -->
+            <iframe src="/peta" width="100%" height="600px" style="border:none;"></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4 mt-5">
+    <div class="col-12">
+        <h4 class="fw-bold">3. Dependensi TPT Antar Provinsi (Topik Network)</h4>
+        <p class="text-muted">Force-directed graph. Node = Provinsi (Ukuran berdasarkan Degree Centrality). Edge = Kemiripan TPT (Selisih &lt; 0.5%).</p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="dashboard-card" style="padding: 10; overflow: hidden; border-radius: 12px; border: 1px solid #eee;">
+            <iframe src="/network" width="100%" height="600px" style="border:none;"></iframe>
+        </div>
+    </div>
+</div>
+<!-- === BAGIAN 4: MULTIVARIAT (PCA, PARALLEL, RADAR) === -->
+<div class="row mb-2 mt-5">
+    <div class="col-12">
+        <h4 class="fw-bold">4. Analisis Multivariat & Reduksi Dimensi</h4>
+        <p class="text-muted">Gunakan fitur <b>Lasso Select</b> atau <b>Box Select</b> pada grafik PCA untuk menyoroti data pada Parallel Coordinates dan Radar Chart. 
+        <button id="btn-reset" class="btn btn-sm btn-outline-danger ms-2">🔄 Reset Seleksi</button></p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <!-- Kiri: PCA Scatter Plot -->
+    <div class="col-lg-6">
+        <div class="dashboard-card h-100">
+            <h5 class="card-title">Scatter Plot PCA</h5>
+            <div id="pca-chart" style="height: 600px; width: 100%;"></div>
+        </div>
+    </div>
+    
+    <!-- Kanan: Parallel & Radar (Ditumpuk) -->
+    <div class="col-lg-6">
+        <div class="dashboard-card mb-4" style="height: 280px; padding: 10px;">
+            <h5 class="card-title" style="margin-left:15px;">Parallel Coordinates (Provinsi Terpilih)</h5>
+            <div id="parallel-chart" style="height: 240px; width: 100%;"></div>
+        </div>
+        <div class="dashboard-card" style="height: 300px; padding: 10px;">
+            <h5 class="card-title" style="margin-left:15px;">Radar Chart (Profil Rata-rata)</h5>
+            <div id="radar-chart" style="height: 260px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Simpan Data JSON -->
+<script id="multi-data" type="application/json">
+    {{ multi_json | safe }}
+</script>
+
+<script>
+    var multiData = JSON.parse(document.getElementById('multi-data').textContent);
+    
+    // Cari daftar pulau unik yang ada di data
+    var uniqueIslands = [...new Set(multiData.pulau)];
+    
+    // Definisikan Palet Warna Kustom untuk Pulau
+    var colorPalette = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6', '#e67e22', '#34495e'];
+    var islandColors = {};
+    uniqueIslands.forEach((isl, i) => {
+        islandColors[isl] = colorPalette[i % colorPalette.length];
+    });
+
+    // 1. Gambar PCA Scatter Plot (Dikelompokkan Berdasarkan Pulau)
+    var pcaData = [];
+    uniqueIslands.forEach(function(island) {
+        // Kumpulkan indeks (baris) yang milik pulau ini
+        var islandIndices = [];
+        for(var i=0; i<multiData.pulau.length; i++) {
+            if(multiData.pulau[i] === island) islandIndices.push(i);
+        }
+        
+        pcaData.push({
+            x: islandIndices.map(i => multiData.pc1[i]),
+            y: islandIndices.map(i => multiData.pc2[i]),
+            mode: 'markers',
+            type: 'scatter',
+            name: island, // Nama untuk Legenda
+            text: islandIndices.map(i => multiData.provinsi[i]),
+            customdata: islandIndices, // Simpan indeks global untuk Brushing
+            hovertemplate: '<b>%{text}</b> ('+island+')<br>PC1: %{x:.2f}<br>PC2: %{y:.2f}<extra></extra>',
+            marker: { size: 12, color: islandColors[island], opacity: 0.8, line: {width: 1, color: '#fff'} }
+        });
+    });
+    
+    var layoutPCA = {
+        xaxis: {title: 'PC1 (' + multiData.var_pc1 + '%)'},
+        yaxis: {title: 'PC2 (' + multiData.var_pc2 + '%)'},
+        dragmode: 'lasso',
+        hovermode: 'closest',
+        margin: {t: 20, l: 40, r: 20, b: 40},
+        legend: {orientation: "h", y: -0.15} // Letakkan legenda di bawah
+    };
+    Plotly.newPlot('pca-chart', pcaData, layoutPCA);
+
+    // Fungsi Update Grafik Tertaut (Parallel & Radar)
+    function updateLinkedCharts(selectedIndices) {
+        
+        // --- A. Update Parallel Coordinates (Berwarna sesuai Pulau) ---
+        var dimensions = [];
+        // Pemetaan warna ke angka untuk parcoords
+        var selectedIslands = selectedIndices.map(i => multiData.pulau[i]);
+        var colorVals = selectedIslands.map(isl => uniqueIslands.indexOf(isl));
+        var parcoordColorscale = uniqueIslands.map((isl, idx) => {
+            return [idx / (uniqueIslands.length > 1 ? uniqueIslands.length - 1 : 1), islandColors[isl]];
+        });
+
+        multiData.features.forEach(function(feature) {
+            var allVals = multiData.raw_data.map(row => row[feature]);
+            var minVal = Math.min(...allVals);
+            var maxVal = Math.max(...allVals);
+            
+            var selectedVals = selectedIndices.map(i => multiData.raw_data[i][feature]);
+            dimensions.push({
+                label: feature,
+                values: selectedVals,
+                range: [minVal, maxVal]
+            });
+        });
+        
+        var traceParallel = {
+            type: 'parcoords',
+            line: { 
+                color: colorVals, 
+                colorscale: parcoordColorscale,
+                cmin: 0, 
+                cmax: uniqueIslands.length > 1 ? uniqueIslands.length - 1 : 1
+            },
+            dimensions: dimensions
+        };
+        Plotly.react('parallel-chart', [traceParallel], {margin: {t: 40, b: 20, l: 40, r: 40}});
+
+        // --- B. Update Radar Chart (1 Poligon Per Pulau Terpilih) ---
+        var radarTraces = [];
+        
+        uniqueIslands.forEach(function(island) {
+            // Saring indeks terpilih HANYA yang berasal dari pulau ini
+            var islandSelectedIdx = selectedIndices.filter(i => multiData.pulau[i] === island);
+            
+            if (islandSelectedIdx.length > 0) {
+                var avgRadarVals = [];
+                for (let j = 0; j < multiData.features.length; j++) {
+                    let sum = 0;
+                    for (let k = 0; k < islandSelectedIdx.length; k++) {
+                        sum += multiData.radar_data[islandSelectedIdx[k]][j];
+                    }
+                    avgRadarVals.push(sum / islandSelectedIdx.length);
+                }
+                
+                var closedVals = avgRadarVals.concat([avgRadarVals[0]]);
+                var closedFeatures = multiData.features.concat([multiData.features[0]]);
+
+                radarTraces.push({
+                    type: 'scatterpolar',
+                    r: closedVals,
+                    theta: closedFeatures,
+                    fill: 'toself',
+                    name: island,
+                    line: {color: islandColors[island]},
+                    fillcolor: islandColors[island] + '66' // Tambah opasitas (transparan)
+                });
+            }
+        });
+
+        // Jika tidak ada data, gambar radar kosong
+        if(radarTraces.length === 0){
+            var closedFeat = multiData.features.concat([multiData.features[0]]);
+            radarTraces.push({type: 'scatterpolar', r: Array(closedFeat.length).fill(0), theta: closedFeat, showlegend: false});
+        }
+
+        Plotly.react('radar-chart', radarTraces, {
+            polar: { radialaxis: { visible: true, range: [-3, 3] } },
+            margin: {t: 20, b: 20, l: 40, r: 40},
+            showlegend: true,
+            legend: {orientation: "h", y: -0.2}
+        });
+    }
+
+    // 2. Inisialisasi awal (Pilih semua provinsi)
+    var allIndices = Array.from({length: multiData.provinsi.length}, (_, i) => i);
+    updateLinkedCharts(allIndices);
+
+    // 3. Event Listener Brushing (Lasso)
+    var pcaChart = document.getElementById('pca-chart');
+    pcaChart.on('plotly_selected', function(eventData) {
+        if (eventData === undefined) return;
+        
+        // customdata berisi indeks global yang asli
+        var selectedIndices = eventData.points.map(pt => pt.customdata);
+        updateLinkedCharts(selectedIndices);
+    });
+
+    // 4. Tombol Reset
+    document.getElementById('btn-reset').addEventListener('click', function() {
+        Plotly.restyle('pca-chart', {'selectedpoints': [null]});
+        updateLinkedCharts(allIndices);
+    });
+</script>
+
+<!-- === BAGIAN 5: DATA FLOW (MIGRASI & TRANSISI SEKTOR) === -->
+<div class="row mb-2 mt-5">
+    <div class="col-12">
+        <h4 class="fw-bold">5. Analisis Aliran (Data Flow)</h4>
+        <p class="text-muted">Pemetaan migrasi penduduk antar provinsi (Flow Map) dan transisi lapangan pekerjaan (Sankey Diagram sebagai alternatif modern Chord Map).</p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <!-- Peta Migrasi Flow 2 (Pydeck 3D) -->
+    <div class="col-lg-6">
+        <div class="dashboard-card" style="padding: 0; overflow: hidden; height: 500px;">
+            <iframe src="/flowmap" width="100%" height="100%" style="border:none;"></iframe>
+        </div>
+    </div>
+    
+    <!-- Sankey Transisi Sektor Flow 1 (Plotly) -->
+    <div class="col-lg-6">
+        <div class="dashboard-card h-100">
+            <div id="sankey-chart" style="height: 500px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<script id="sankey-data" type="application/json">
+    {{ sankey_json | safe }}
+</script>
+
+<script>
+    // Hanya render Sankey Diagram di sini. Flow Map sudah di-handle oleh Iframe.
+    var sankeyData = JSON.parse(document.getElementById('sankey-data').textContent);
+    Plotly.newPlot('sankey-chart', sankeyData.data, sankeyData.layout, {responsive: true});
+</script>
+    
+
+<!-- Script untuk Merender Plotly JSON dari Flask -->
+<!-- Simpan data JSON di dalam tipe application/json agar tidak dibaca sebagai JavaScript oleh editor -->
+<script id="icicle-data" type="application/json">
+    {{ icicle_json | safe }}
+</script>
+<script id="treemap-data" type="application/json">
+    {{ treemap_json | safe }}
+</script>
+
+<!-- Script untuk Merender Plotly -->
+<script>
+    // Ambil string JSON dari tag di atas, lalu ubah (parse) menjadi objek JavaScript
+    var icicleData = JSON.parse(document.getElementById('icicle-data').textContent);
+    var treemapData = JSON.parse(document.getElementById('treemap-data').textContent);
+    
+    // Render grafik ke dalam Div
+    Plotly.newPlot('icicle-chart', icicleData.data, icicleData.layout, {responsive: true});
+    Plotly.newPlot('treemap-chart', treemapData.data, treemapData.layout, {responsive: true});
+</script>
+{% endblock %}

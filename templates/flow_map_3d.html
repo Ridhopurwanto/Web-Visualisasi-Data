@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~9.3.*/dist/index.js'></script>
+    <link rel="stylesheet" href=https://cdn.jsdelivr.net/npm/@deck.gl/widgets@~9.3.*/dist/stylesheet.css />
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+
+#deck-container .error_text {
+  color: red;
+  background: none;
+  position: absolute;
+  z-index: 100;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "latitude": -2.5,
+    "longitude": 118.0,
+    "pitch": 45,
+    "zoom": 4
+  },
+  "layers": [
+    {
+      "@@type": "ArcLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 14485.0,
+          "Tujuan": "ACEH",
+          "lat_asal": 2.1154,
+          "lat_tujuan": 4.6951,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 96.7494,
+          "width": 1.6397327711595424
+        },
+        {
+          "Asal": "ACEH",
+          "Jumlah": 21622.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": 4.6951,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 96.7494,
+          "lon_tujuan": 99.5451,
+          "width": 1.9549397292379445
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 18150.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": -0.7399,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 100.8,
+          "lon_tujuan": 99.5451,
+          "width": 1.8015981909938346
+        },
+        {
+          "Asal": "RIAU",
+          "Jumlah": 65668.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": 0.2933,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 101.7068,
+          "lon_tujuan": 99.5451,
+          "width": 3.9002396697621555
+        },
+        {
+          "Asal": "JAMBI",
+          "Jumlah": 7280.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": -1.6116,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 103.6131,
+          "lon_tujuan": 99.5451,
+          "width": 1.3215225801892625
+        },
+        {
+          "Asal": "KEPULAUAN RIAU",
+          "Jumlah": 24366.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": 3.9456,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 108.1429,
+          "lon_tujuan": 99.5451,
+          "width": 2.076129009463128
+        },
+        {
+          "Asal": "DKI JAKARTA",
+          "Jumlah": 8108.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": -6.2088,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 106.8456,
+          "lon_tujuan": 99.5451,
+          "width": 1.3580913571668325
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 19801.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": -6.9204,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 99.5451,
+          "width": 1.8745149190010424
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 6751.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": -7.1509,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 99.5451,
+          "width": 1.2981591948980373
+        },
+        {
+          "Asal": "BANTEN",
+          "Jumlah": 5582.0,
+          "Tujuan": "SUMATERA UTARA",
+          "lat_asal": -6.4058,
+          "lat_tujuan": 2.1154,
+          "lon_asal": 106.064,
+          "lon_tujuan": 99.5451,
+          "width": 1.2465300882714923
+        },
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 9316.0,
+          "Tujuan": "SUMATERA BARAT",
+          "lat_asal": 2.1154,
+          "lat_tujuan": -0.7399,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 100.8,
+          "width": 1.4114429061872487
+        },
+        {
+          "Asal": "RIAU",
+          "Jumlah": 21359.0,
+          "Tujuan": "SUMATERA BARAT",
+          "lat_asal": 0.2933,
+          "lat_tujuan": -0.7399,
+          "lon_asal": 101.7068,
+          "lon_tujuan": 100.8,
+          "width": 1.9433242843767113
+        },
+        {
+          "Asal": "JAMBI",
+          "Jumlah": 8843.0,
+          "Tujuan": "SUMATERA BARAT",
+          "lat_asal": -1.6116,
+          "lat_tujuan": -0.7399,
+          "lon_asal": 103.6131,
+          "lon_tujuan": 100.8,
+          "width": 1.3905527715128638
+        },
+        {
+          "Asal": "KEPULAUAN RIAU",
+          "Jumlah": 11221.0,
+          "Tujuan": "SUMATERA BARAT",
+          "lat_asal": 3.9456,
+          "lat_tujuan": -0.7399,
+          "lon_asal": 108.1429,
+          "lon_tujuan": 100.8,
+          "width": 1.4955775923494115
+        },
+        {
+          "Asal": "DKI JAKARTA",
+          "Jumlah": 5040.0,
+          "Tujuan": "SUMATERA BARAT",
+          "lat_asal": -6.2088,
+          "lat_tujuan": -0.7399,
+          "lon_asal": 106.8456,
+          "lon_tujuan": 100.8,
+          "width": 1.2225925555156434
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 12287.0,
+          "Tujuan": "SUMATERA BARAT",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -0.7399,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 100.8,
+          "width": 1.5426576844485536
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 5212.0,
+          "Tujuan": "SUMATERA BARAT",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -0.7399,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 100.8,
+          "width": 1.2301889681245104
+        },
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 49179.0,
+          "Tujuan": "RIAU",
+          "lat_asal": 2.1154,
+          "lat_tujuan": 0.2933,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 101.7068,
+          "width": 3.1719998586713936
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 45624.0,
+          "Tujuan": "RIAU",
+          "lat_asal": -0.7399,
+          "lat_tujuan": 0.2933,
+          "lon_asal": 100.8,
+          "lon_tujuan": 101.7068,
+          "width": 3.0149926096916095
+        },
+        {
+          "Asal": "JAMBI",
+          "Jumlah": 5030.0,
+          "Tujuan": "RIAU",
+          "lat_asal": -1.6116,
+          "lat_tujuan": 0.2933,
+          "lon_asal": 103.6131,
+          "lon_tujuan": 101.7068,
+          "width": 1.2221509036197789
+        },
+        {
+          "Asal": "KEPULAUAN RIAU",
+          "Jumlah": 13622.0,
+          "Tujuan": "RIAU",
+          "lat_asal": 3.9456,
+          "lat_tujuan": 0.2933,
+          "lon_asal": 108.1429,
+          "lon_tujuan": 101.7068,
+          "width": 1.601618212546447
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 5251.0,
+          "Tujuan": "RIAU",
+          "lat_asal": -6.9204,
+          "lat_tujuan": 0.2933,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 101.7068,
+          "width": 1.2319114105183815
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 8893.0,
+          "Tujuan": "RIAU",
+          "lat_asal": -7.1509,
+          "lat_tujuan": 0.2933,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 101.7068,
+          "width": 1.3927610309921858
+        },
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 6297.0,
+          "Tujuan": "JAMBI",
+          "lat_asal": 2.1154,
+          "lat_tujuan": -1.6116,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 103.6131,
+          "width": 1.2781081988257947
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 14579.0,
+          "Tujuan": "JAMBI",
+          "lat_asal": -0.7399,
+          "lat_tujuan": -1.6116,
+          "lon_asal": 100.8,
+          "lon_tujuan": 103.6131,
+          "width": 1.6438842989806675
+        },
+        {
+          "Asal": "SUMATERA SELATAN",
+          "Jumlah": 5056.0,
+          "Tujuan": "JAMBI",
+          "lat_asal": -3.3194,
+          "lat_tujuan": -1.6116,
+          "lon_asal": 103.9144,
+          "lon_tujuan": 103.6131,
+          "width": 1.2232991985490262
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 11217.0,
+          "Tujuan": "JAMBI",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -1.6116,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 103.6131,
+          "width": 1.4954009315910657
+        },
+        {
+          "Asal": "JAMBI",
+          "Jumlah": 7325.0,
+          "Tujuan": "SUMATERA SELATAN",
+          "lat_asal": -1.6116,
+          "lat_tujuan": -3.3194,
+          "lon_asal": 103.6131,
+          "lon_tujuan": 103.9144,
+          "width": 1.3235100137206524
+        },
+        {
+          "Asal": "BENGKULU",
+          "Jumlah": 8714.0,
+          "Tujuan": "SUMATERA SELATAN",
+          "lat_asal": -3.5778,
+          "lat_tujuan": -3.3194,
+          "lon_asal": 102.3464,
+          "lon_tujuan": 103.9144,
+          "width": 1.3848554620562135
+        },
+        {
+          "Asal": "LAMPUNG",
+          "Jumlah": 24030.0,
+          "Tujuan": "SUMATERA SELATAN",
+          "lat_asal": -4.5586,
+          "lat_tujuan": -3.3194,
+          "lon_asal": 105.4068,
+          "lon_tujuan": 103.9144,
+          "width": 2.061289505762085
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 10468.0,
+          "Tujuan": "SUMATERA SELATAN",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -3.3194,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 103.9144,
+          "width": 1.4623212045908243
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 12127.0,
+          "Tujuan": "SUMATERA SELATAN",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -3.3194,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 103.9144,
+          "width": 1.5355912541147234
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 7635.0,
+          "Tujuan": "SUMATERA SELATAN",
+          "lat_asal": -7.536,
+          "lat_tujuan": -3.3194,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 103.9144,
+          "width": 1.3372012224924477
+        },
+        {
+          "Asal": "BANTEN",
+          "Jumlah": 5788.0,
+          "Tujuan": "SUMATERA SELATAN",
+          "lat_asal": -6.4058,
+          "lat_tujuan": -3.3194,
+          "lon_asal": 106.064,
+          "lon_tujuan": 103.9144,
+          "width": 1.2556281173262982
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 5331.0,
+          "Tujuan": "BENGKULU",
+          "lat_asal": -0.7399,
+          "lat_tujuan": -3.5778,
+          "lon_asal": 100.8,
+          "lon_tujuan": 102.3464,
+          "width": 1.2354446256852964
+        },
+        {
+          "Asal": "SUMATERA SELATAN",
+          "Jumlah": 7846.0,
+          "Tujuan": "BENGKULU",
+          "lat_asal": -3.3194,
+          "lat_tujuan": -3.5778,
+          "lon_asal": 103.9144,
+          "lon_tujuan": 102.3464,
+          "width": 1.346520077495186
+        },
+        {
+          "Asal": "SUMATERA SELATAN",
+          "Jumlah": 19987.0,
+          "Tujuan": "LAMPUNG",
+          "lat_asal": -3.3194,
+          "lat_tujuan": -4.5586,
+          "lon_asal": 103.9144,
+          "lon_tujuan": 105.4068,
+          "width": 1.8827296442641197
+        },
+        {
+          "Asal": "DKI JAKARTA",
+          "Jumlah": 6189.0,
+          "Tujuan": "LAMPUNG",
+          "lat_asal": -6.2088,
+          "lat_tujuan": -4.5586,
+          "lon_asal": 106.8456,
+          "lon_tujuan": 105.4068,
+          "width": 1.2733383583504596
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 15702.0,
+          "Tujuan": "LAMPUNG",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -4.5586,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 105.4068,
+          "width": 1.6934818068862363
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 12986.0,
+          "Tujuan": "LAMPUNG",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -4.5586,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 105.4068,
+          "width": 1.573529151969473
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 5596.0,
+          "Tujuan": "LAMPUNG",
+          "lat_asal": -7.536,
+          "lat_tujuan": -4.5586,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 105.4068,
+          "width": 1.2471484009257023
+        },
+        {
+          "Asal": "BANTEN",
+          "Jumlah": 11927.0,
+          "Tujuan": "LAMPUNG",
+          "lat_asal": -6.4058,
+          "lat_tujuan": -4.5586,
+          "lon_asal": 106.064,
+          "lon_tujuan": 105.4068,
+          "width": 1.526758216197436
+        },
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 18601.0,
+          "Tujuan": "KEPULAUAN RIAU",
+          "lat_asal": 2.1154,
+          "lat_tujuan": 3.9456,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 108.1429,
+          "width": 1.8215166914973178
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 15324.0,
+          "Tujuan": "KEPULAUAN RIAU",
+          "lat_asal": -0.7399,
+          "lat_tujuan": 3.9456,
+          "lon_asal": 100.8,
+          "lon_tujuan": 108.1429,
+          "width": 1.676787365222563
+        },
+        {
+          "Asal": "RIAU",
+          "Jumlah": 7531.0,
+          "Tujuan": "KEPULAUAN RIAU",
+          "lat_asal": 0.2933,
+          "lat_tujuan": 3.9456,
+          "lon_asal": 101.7068,
+          "lon_tujuan": 108.1429,
+          "width": 1.3326080427754583
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 12124.0,
+          "Tujuan": "KEPULAUAN RIAU",
+          "lat_asal": -7.1509,
+          "lat_tujuan": 3.9456,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 108.1429,
+          "width": 1.535458758545964
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 6453.0,
+          "Tujuan": "KEPULAUAN RIAU",
+          "lat_asal": -7.536,
+          "lat_tujuan": 3.9456,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 108.1429,
+          "width": 1.284997968401279
+        },
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 19064.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": 2.1154,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 106.8456,
+          "width": 1.8419651742758383
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 22428.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -0.7399,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 100.8,
+          "lon_tujuan": 106.8456,
+          "width": 1.9905368720446126
+        },
+        {
+          "Asal": "SUMATERA SELATAN",
+          "Jumlah": 5757.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -3.3194,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 103.9144,
+          "lon_tujuan": 106.8456,
+          "width": 1.2542589964491189
+        },
+        {
+          "Asal": "LAMPUNG",
+          "Jumlah": 18517.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -4.5586,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 105.4068,
+          "lon_tujuan": 106.8456,
+          "width": 1.817806815572057
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 339634.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 106.8456,
+          "width": 16.0
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 188939.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 106.8456,
+          "width": 9.344526755271852
+        },
+        {
+          "Asal": "DI YOGYAKARTA",
+          "Jumlah": 15291.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -7.7956,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 110.3695,
+          "lon_tujuan": 106.8456,
+          "width": 1.6753299139662108
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 31387.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -7.536,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 106.8456,
+          "width": 2.386212805549503
+        },
+        {
+          "Asal": "BANTEN",
+          "Jumlah": 103105.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -6.4058,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 106.064,
+          "lon_tujuan": 106.8456,
+          "width": 5.5536518723096036
+        },
+        {
+          "Asal": "NUSA TENGGARA TIMUR",
+          "Jumlah": 5457.0,
+          "Tujuan": "DKI JAKARTA",
+          "lat_asal": -8.6225,
+          "lat_tujuan": -6.2088,
+          "lon_asal": 121.0794,
+          "lon_tujuan": 106.8456,
+          "width": 1.2410094395731877
+        },
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 21257.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": 2.1154,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 107.6046,
+          "width": 1.9388194350388948
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 20448.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -0.7399,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 100.8,
+          "lon_tujuan": 107.6046,
+          "width": 1.9030897966634672
+        },
+        {
+          "Asal": "RIAU",
+          "Jumlah": 5352.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": 0.2933,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 101.7068,
+          "lon_tujuan": 107.6046,
+          "width": 1.2363720946666117
+        },
+        {
+          "Asal": "SUMATERA SELATAN",
+          "Jumlah": 13239.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -3.3194,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 103.9144,
+          "lon_tujuan": 107.6046,
+          "width": 1.5847029449348415
+        },
+        {
+          "Asal": "LAMPUNG",
+          "Jumlah": 20634.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -4.5586,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 105.4068,
+          "lon_tujuan": 107.6046,
+          "width": 1.9113045219265445
+        },
+        {
+          "Asal": "KEPULAUAN RIAU",
+          "Jumlah": 5696.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": 3.9456,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 108.1429,
+          "lon_tujuan": 107.6046,
+          "width": 1.2515649198843461
+        },
+        {
+          "Asal": "DKI JAKARTA",
+          "Jumlah": 76296.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -6.2088,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 106.8456,
+          "lon_tujuan": 107.6046,
+          "width": 4.36962730468681
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 173999.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 107.6046,
+          "width": 8.68469882285048
+        },
+        {
+          "Asal": "DI YOGYAKARTA",
+          "Jumlah": 24533.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -7.7956,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 110.3695,
+          "lon_tujuan": 107.6046,
+          "width": 2.083504596124063
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 36330.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -7.536,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 107.6046,
+          "width": 2.604521337675262
+        },
+        {
+          "Asal": "BANTEN",
+          "Jumlah": 52798.0,
+          "Tujuan": "JAWA BARAT",
+          "lat_asal": -6.4058,
+          "lat_tujuan": -6.9204,
+          "lon_asal": 106.064,
+          "lon_tujuan": 107.6046,
+          "width": 3.3318336797847095
+        },
+        {
+          "Asal": "RIAU",
+          "Jumlah": 5884.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": 0.2933,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 101.7068,
+          "lon_tujuan": 110.1403,
+          "width": 1.2598679755265962
+        },
+        {
+          "Asal": "SUMATERA SELATAN",
+          "Jumlah": 6659.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -3.3194,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 103.9144,
+          "lon_tujuan": 110.1403,
+          "width": 1.294095997456085
+        },
+        {
+          "Asal": "LAMPUNG",
+          "Jumlah": 8402.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -4.5586,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 105.4068,
+          "lon_tujuan": 110.1403,
+          "width": 1.371075922905245
+        },
+        {
+          "Asal": "KEPULAUAN RIAU",
+          "Jumlah": 6625.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": 3.9456,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 108.1429,
+          "lon_tujuan": 110.1403,
+          "width": 1.2925943810101463
+        },
+        {
+          "Asal": "DKI JAKARTA",
+          "Jumlah": 48201.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -6.2088,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 106.8456,
+          "lon_tujuan": 110.1403,
+          "width": 3.1288063032558577
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 123205.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 110.1403,
+          "width": 6.441372182996991
+        },
+        {
+          "Asal": "DI YOGYAKARTA",
+          "Jumlah": 59708.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -7.7956,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 110.3695,
+          "lon_tujuan": 110.1403,
+          "width": 3.6370151398269903
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 47761.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -7.536,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 110.1403,
+          "width": 3.1093736198378252
+        },
+        {
+          "Asal": "BANTEN",
+          "Jumlah": 29622.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -6.4058,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 106.064,
+          "lon_tujuan": 110.1403,
+          "width": 2.3082612459294416
+        },
+        {
+          "Asal": "KALIMANTAN BARAT",
+          "Jumlah": 6393.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -0.2788,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 111.4753,
+          "lon_tujuan": 110.1403,
+          "width": 1.2823480570260928
+        },
+        {
+          "Asal": "KALIMANTAN TENGAH",
+          "Jumlah": 17670.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": -1.6815,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 113.3824,
+          "lon_tujuan": 110.1403,
+          "width": 1.7803988999923446
+        },
+        {
+          "Asal": "KALIMANTAN TIMUR",
+          "Jumlah": 9142.0,
+          "Tujuan": "JAWA TENGAH",
+          "lat_asal": 0.5387,
+          "lat_tujuan": -7.1509,
+          "lon_asal": 116.4194,
+          "lon_tujuan": 110.1403,
+          "width": 1.4037581631992087
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 8554.0,
+          "Tujuan": "DI YOGYAKARTA",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -7.7956,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 110.3695,
+          "width": 1.3777890317223835
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 49606.0,
+          "Tujuan": "DI YOGYAKARTA",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -7.7956,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 110.3695,
+          "width": 3.190858394624802
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 5859.0,
+          "Tujuan": "DI YOGYAKARTA",
+          "lat_asal": -7.536,
+          "lat_tujuan": -7.7956,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 110.3695,
+          "width": 1.2587638457869352
+        },
+        {
+          "Asal": "LAMPUNG",
+          "Jumlah": 7216.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -4.5586,
+          "lat_tujuan": -7.536,
+          "lon_asal": 105.4068,
+          "lon_tujuan": 112.2384,
+          "width": 1.3186960080557306
+        },
+        {
+          "Asal": "KEPULAUAN RIAU",
+          "Jumlah": 6250.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": 3.9456,
+          "lat_tujuan": -7.536,
+          "lon_asal": 108.1429,
+          "lon_tujuan": 112.2384,
+          "width": 1.2760324349152323
+        },
+        {
+          "Asal": "DKI JAKARTA",
+          "Jumlah": 16879.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -6.2088,
+          "lat_tujuan": -7.536,
+          "lon_asal": 106.8456,
+          "lon_tujuan": 112.2384,
+          "width": 1.745464235029473
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 32723.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -7.536,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 112.2384,
+          "width": 2.4452174988369832
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 63399.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -7.536,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 112.2384,
+          "width": 3.80002885459053
+        },
+        {
+          "Asal": "DI YOGYAKARTA",
+          "Jumlah": 15873.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -7.7956,
+          "lat_tujuan": -7.536,
+          "lon_asal": 110.3695,
+          "lon_tujuan": 112.2384,
+          "width": 1.7010340543055171
+        },
+        {
+          "Asal": "BANTEN",
+          "Jumlah": 9152.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -6.4058,
+          "lat_tujuan": -7.536,
+          "lon_asal": 106.064,
+          "lon_tujuan": 112.2384,
+          "width": 1.404199815095073
+        },
+        {
+          "Asal": "BALI",
+          "Jumlah": 20182.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -8.4095,
+          "lat_tujuan": -7.536,
+          "lon_asal": 115.1889,
+          "lon_tujuan": 112.2384,
+          "width": 1.891341856233475
+        },
+        {
+          "Asal": "NUSA TENGGARA BARAT",
+          "Jumlah": 7896.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -8.6529,
+          "lat_tujuan": -7.536,
+          "lon_asal": 117.3616,
+          "lon_tujuan": 112.2384,
+          "width": 1.3487283369745078
+        },
+        {
+          "Asal": "NUSA TENGGARA TIMUR",
+          "Jumlah": 14886.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -8.6225,
+          "lat_tujuan": -7.536,
+          "lon_asal": 121.0794,
+          "lon_tujuan": 112.2384,
+          "width": 1.6574430121837036
+        },
+        {
+          "Asal": "KALIMANTAN TENGAH",
+          "Jumlah": 8786.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -1.6815,
+          "lat_tujuan": -7.536,
+          "lon_asal": 113.3824,
+          "lon_tujuan": 112.2384,
+          "width": 1.3880353557064369
+        },
+        {
+          "Asal": "KALIMANTAN SELATAN",
+          "Jumlah": 10768.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": -3.0926,
+          "lat_tujuan": -7.536,
+          "lon_asal": 115.2838,
+          "lon_tujuan": 112.2384,
+          "width": 1.4755707614667553
+        },
+        {
+          "Asal": "KALIMANTAN TIMUR",
+          "Jumlah": 18237.0,
+          "Tujuan": "JAWA TIMUR",
+          "lat_asal": 0.5387,
+          "lat_tujuan": -7.536,
+          "lon_asal": 116.4194,
+          "lon_tujuan": 112.2384,
+          "width": 1.8054405624878545
+        },
+        {
+          "Asal": "SUMATERA UTARA",
+          "Jumlah": 6178.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": 2.1154,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 99.5451,
+          "lon_tujuan": 106.064,
+          "width": 1.2728525412650087
+        },
+        {
+          "Asal": "SUMATERA BARAT",
+          "Jumlah": 7232.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": -0.7399,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 100.8,
+          "lon_tujuan": 106.064,
+          "width": 1.3194026510891135
+        },
+        {
+          "Asal": "LAMPUNG",
+          "Jumlah": 18099.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": -4.5586,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 105.4068,
+          "lon_tujuan": 106.064,
+          "width": 1.7993457663249262
+        },
+        {
+          "Asal": "DKI JAKARTA",
+          "Jumlah": 22916.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": -6.2088,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 106.8456,
+          "lon_tujuan": 106.064,
+          "width": 2.012089484562794
+        },
+        {
+          "Asal": "JAWA BARAT",
+          "Jumlah": 71956.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": -6.9204,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 107.6046,
+          "lon_tujuan": 106.064,
+          "width": 4.177950381881672
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 65752.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 106.064,
+          "width": 3.9039495456874165
+        },
+        {
+          "Asal": "DI YOGYAKARTA",
+          "Jumlah": 9332.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": -7.7956,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 110.3695,
+          "lon_tujuan": 106.064,
+          "width": 1.4121495492206315
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 11700.0,
+          "Tujuan": "BANTEN",
+          "lat_asal": -7.536,
+          "lat_tujuan": -6.4058,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 106.064,
+          "width": 1.5167327181613148
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 6639.0,
+          "Tujuan": "BALI",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -8.4095,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 115.1889,
+          "width": 1.2932126936643564
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 26708.0,
+          "Tujuan": "BALI",
+          "lat_asal": -7.536,
+          "lat_tujuan": -8.4095,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 115.1889,
+          "width": 2.1795638834745636
+        },
+        {
+          "Asal": "NUSA TENGGARA BARAT",
+          "Jumlah": 11620.0,
+          "Tujuan": "BALI",
+          "lat_asal": -8.6529,
+          "lat_tujuan": -8.4095,
+          "lon_asal": 117.3616,
+          "lon_tujuan": 115.1889,
+          "width": 1.5131995029943999
+        },
+        {
+          "Asal": "NUSA TENGGARA TIMUR",
+          "Jumlah": 14451.0,
+          "Tujuan": "BALI",
+          "lat_asal": -8.6225,
+          "lat_tujuan": -8.4095,
+          "lon_asal": 121.0794,
+          "lon_tujuan": 115.1889,
+          "width": 1.6382311547136035
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 6175.0,
+          "Tujuan": "NUSA TENGGARA TIMUR",
+          "lat_asal": -7.536,
+          "lat_tujuan": -8.6225,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 121.0794,
+          "width": 1.2727200456962495
+        },
+        {
+          "Asal": "BALI",
+          "Jumlah": 6336.0,
+          "Tujuan": "NUSA TENGGARA TIMUR",
+          "lat_asal": -8.4095,
+          "lat_tujuan": -8.6225,
+          "lon_asal": 115.1889,
+          "lon_tujuan": 121.0794,
+          "width": 1.2798306412196658
+        },
+        {
+          "Asal": "KALIMANTAN TENGAH",
+          "Jumlah": 7578.0,
+          "Tujuan": "NUSA TENGGARA TIMUR",
+          "lat_asal": -1.6815,
+          "lat_tujuan": -8.6225,
+          "lon_asal": 113.3824,
+          "lon_tujuan": 121.0794,
+          "width": 1.334683806686021
+        },
+        {
+          "Asal": "KALIMANTAN TIMUR",
+          "Jumlah": 5972.0,
+          "Tujuan": "NUSA TENGGARA TIMUR",
+          "lat_asal": 0.5387,
+          "lat_tujuan": -8.6225,
+          "lon_asal": 116.4194,
+          "lon_tujuan": 121.0794,
+          "width": 1.2637545122102027
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 12226.0,
+          "Tujuan": "KALIMANTAN BARAT",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -0.2788,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 111.4753,
+          "width": 1.5399636078837808
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 29980.0,
+          "Tujuan": "KALIMANTAN TENGAH",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -1.6815,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 113.3824,
+          "width": 2.3240723838013864
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 9766.0,
+          "Tujuan": "KALIMANTAN TENGAH",
+          "lat_asal": -7.536,
+          "lat_tujuan": -1.6815,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 113.3824,
+          "width": 1.4313172415011453
+        },
+        {
+          "Asal": "KALIMANTAN SELATAN",
+          "Jumlah": 15674.0,
+          "Tujuan": "KALIMANTAN TENGAH",
+          "lat_asal": -3.0926,
+          "lat_tujuan": -1.6815,
+          "lon_asal": 115.2838,
+          "lon_tujuan": 113.3824,
+          "width": 1.6922451815778161
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 7190.0,
+          "Tujuan": "KALIMANTAN SELATAN",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -3.0926,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 115.2838,
+          "width": 1.3175477131264832
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 9094.0,
+          "Tujuan": "KALIMANTAN SELATAN",
+          "lat_asal": -7.536,
+          "lat_tujuan": -3.0926,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 115.2838,
+          "width": 1.4016382340990596
+        },
+        {
+          "Asal": "KALIMANTAN TENGAH",
+          "Jumlah": 12807.0,
+          "Tujuan": "KALIMANTAN SELATAN",
+          "lat_asal": -1.6815,
+          "lat_tujuan": -3.0926,
+          "lon_asal": 113.3824,
+          "lon_tujuan": 115.2838,
+          "width": 1.5656235830335008
+        },
+        {
+          "Asal": "KALIMANTAN TIMUR",
+          "Jumlah": 7962.0,
+          "Tujuan": "KALIMANTAN SELATAN",
+          "lat_asal": 0.5387,
+          "lat_tujuan": -3.0926,
+          "lon_asal": 116.4194,
+          "lon_tujuan": 115.2838,
+          "width": 1.3516432394872127
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 14121.0,
+          "Tujuan": "KALIMANTAN TIMUR",
+          "lat_asal": -7.1509,
+          "lat_tujuan": 0.5387,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 116.4194,
+          "width": 1.6236566421500793
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 22712.0,
+          "Tujuan": "KALIMANTAN TIMUR",
+          "lat_asal": -7.536,
+          "lat_tujuan": 0.5387,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 116.4194,
+          "width": 2.003079785887161
+        },
+        {
+          "Asal": "NUSA TENGGARA BARAT",
+          "Jumlah": 7658.0,
+          "Tujuan": "KALIMANTAN TIMUR",
+          "lat_asal": -8.6529,
+          "lat_tujuan": 0.5387,
+          "lon_asal": 117.3616,
+          "lon_tujuan": 116.4194,
+          "width": 1.3382170218529357
+        },
+        {
+          "Asal": "NUSA TENGGARA TIMUR",
+          "Jumlah": 12582.0,
+          "Tujuan": "KALIMANTAN TIMUR",
+          "lat_asal": -8.6225,
+          "lat_tujuan": 0.5387,
+          "lon_asal": 121.0794,
+          "lon_tujuan": 116.4194,
+          "width": 1.5556864153765524
+        },
+        {
+          "Asal": "KALIMANTAN SELATAN",
+          "Jumlah": 9904.0,
+          "Tujuan": "KALIMANTAN TIMUR",
+          "lat_asal": -3.0926,
+          "lat_tujuan": 0.5387,
+          "lon_asal": 115.2838,
+          "lon_tujuan": 116.4194,
+          "width": 1.4374120376640738
+        },
+        {
+          "Asal": "SULAWESI SELATAN",
+          "Jumlah": 25914.0,
+          "Tujuan": "KALIMANTAN TIMUR",
+          "lat_asal": -3.6688,
+          "lat_tujuan": 0.5387,
+          "lon_asal": 119.974,
+          "lon_tujuan": 116.4194,
+          "width": 2.144496722942933
+        },
+        {
+          "Asal": "SULAWESI SELATAN",
+          "Jumlah": 7642.0,
+          "Tujuan": "KALIMANTAN UTARA",
+          "lat_asal": -3.6688,
+          "lat_tujuan": 3.0731,
+          "lon_asal": 119.974,
+          "lon_tujuan": 116.0414,
+          "width": 1.3375103788195528
+        },
+        {
+          "Asal": "GORONTALO",
+          "Jumlah": 8651.0,
+          "Tujuan": "SULAWESI UTARA",
+          "lat_asal": 0.6999,
+          "lat_tujuan": 0.6247,
+          "lon_asal": 122.4467,
+          "lon_tujuan": 123.975,
+          "width": 1.382073055112268
+        },
+        {
+          "Asal": "SULAWESI SELATAN",
+          "Jumlah": 12121.0,
+          "Tujuan": "SULAWESI TENGAH",
+          "lat_asal": -3.6688,
+          "lat_tujuan": -1.43,
+          "lon_asal": 119.974,
+          "lon_tujuan": 121.4456,
+          "width": 1.5353262629772049
+        },
+        {
+          "Asal": "GORONTALO",
+          "Jumlah": 5148.0,
+          "Tujuan": "SULAWESI TENGAH",
+          "lat_asal": 0.6999,
+          "lat_tujuan": -1.43,
+          "lon_asal": 122.4467,
+          "lon_tujuan": 121.4456,
+          "width": 1.2273623959909785
+        },
+        {
+          "Asal": "NUSA TENGGARA TIMUR",
+          "Jumlah": 8903.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": -8.6225,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 121.0794,
+          "lon_tujuan": 119.974,
+          "width": 1.3932026828880502
+        },
+        {
+          "Asal": "KALIMANTAN TIMUR",
+          "Jumlah": 25015.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": 0.5387,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 116.4194,
+          "lon_tujuan": 119.974,
+          "width": 2.104792217504726
+        },
+        {
+          "Asal": "KALIMANTAN UTARA",
+          "Jumlah": 7906.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": 3.0731,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 116.0414,
+          "lon_tujuan": 119.974,
+          "width": 1.349169988870372
+        },
+        {
+          "Asal": "SULAWESI TENGAH",
+          "Jumlah": 15749.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": -1.43,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 121.4456,
+          "lon_tujuan": 119.974,
+          "width": 1.695557570796799
+        },
+        {
+          "Asal": "SULAWESI TENGGARA",
+          "Jumlah": 24021.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": -4.1449,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 122.1746,
+          "lon_tujuan": 119.974,
+          "width": 2.060892019055807
+        },
+        {
+          "Asal": "SULAWESI BARAT",
+          "Jumlah": 14890.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": -2.8441,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 119.2321,
+          "lon_tujuan": 119.974,
+          "width": 1.6576196729420494
+        },
+        {
+          "Asal": "PAPUA BARAT",
+          "Jumlah": 6494.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": -1.3361,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 133.1747,
+          "lon_tujuan": 119.974,
+          "width": 1.286808741174323
+        },
+        {
+          "Asal": "PAPUA",
+          "Jumlah": 10497.0,
+          "Tujuan": "SULAWESI SELATAN",
+          "lat_asal": -4.2699,
+          "lat_tujuan": -3.6688,
+          "lon_asal": 138.0804,
+          "lon_tujuan": 119.974,
+          "width": 1.4636019950888308
+        },
+        {
+          "Asal": "SULAWESI SELATAN",
+          "Jumlah": 12745.0,
+          "Tujuan": "SULAWESI TENGGARA",
+          "lat_asal": -3.6688,
+          "lat_tujuan": -4.1449,
+          "lon_asal": 119.974,
+          "lon_tujuan": 122.1746,
+          "width": 1.5628853412791417
+        },
+        {
+          "Asal": "SULAWESI UTARA",
+          "Jumlah": 5819.0,
+          "Tujuan": "GORONTALO",
+          "lat_asal": 0.6247,
+          "lat_tujuan": 0.6999,
+          "lon_asal": 123.975,
+          "lon_tujuan": 122.4467,
+          "width": 1.256997238203478
+        },
+        {
+          "Asal": "SULAWESI SELATAN",
+          "Jumlah": 11033.0,
+          "Tujuan": "SULAWESI BARAT",
+          "lat_asal": -3.6688,
+          "lat_tujuan": -2.8441,
+          "lon_asal": 119.974,
+          "lon_tujuan": 119.2321,
+          "width": 1.4872745367071611
+        },
+        {
+          "Asal": "SULAWESI TENGGARA",
+          "Jumlah": 6548.0,
+          "Tujuan": "MALUKU",
+          "lat_asal": -4.1449,
+          "lat_tujuan": -3.2385,
+          "lon_asal": 122.1746,
+          "lon_tujuan": 130.1453,
+          "width": 1.2891936614119905
+        },
+        {
+          "Asal": "PAPUA BARAT",
+          "Jumlah": 5010.0,
+          "Tujuan": "MALUKU",
+          "lat_asal": -1.3361,
+          "lat_tujuan": -3.2385,
+          "lon_asal": 133.1747,
+          "lon_tujuan": 130.1453,
+          "width": 1.2212675998280502
+        },
+        {
+          "Asal": "SULAWESI TENGGARA",
+          "Jumlah": 6549.0,
+          "Tujuan": "PAPUA BARAT",
+          "lat_asal": -4.1449,
+          "lat_tujuan": -1.3361,
+          "lon_asal": 122.1746,
+          "lon_tujuan": 133.1747,
+          "width": 1.289237826601577
+        },
+        {
+          "Asal": "JAWA TENGAH",
+          "Jumlah": 5984.0,
+          "Tujuan": "PAPUA",
+          "lat_asal": -7.1509,
+          "lat_tujuan": -4.2699,
+          "lon_asal": 110.1403,
+          "lon_tujuan": 138.0804,
+          "width": 1.26428449448524
+        },
+        {
+          "Asal": "JAWA TIMUR",
+          "Jumlah": 7956.0,
+          "Tujuan": "PAPUA",
+          "lat_asal": -7.536,
+          "lat_tujuan": -4.2699,
+          "lon_asal": 112.2384,
+          "lon_tujuan": 138.0804,
+          "width": 1.3513782483496941
+        },
+        {
+          "Asal": "NUSA TENGGARA TIMUR",
+          "Jumlah": 5311.0,
+          "Tujuan": "PAPUA",
+          "lat_asal": -8.6225,
+          "lat_tujuan": -4.2699,
+          "lon_asal": 121.0794,
+          "lon_tujuan": 138.0804,
+          "width": 1.2345613218935678
+        },
+        {
+          "Asal": "SULAWESI SELATAN",
+          "Jumlah": 15162.0,
+          "Tujuan": "PAPUA",
+          "lat_asal": -3.6688,
+          "lat_tujuan": -4.2699,
+          "lon_asal": 119.974,
+          "lon_tujuan": 138.0804,
+          "width": 1.6696326045095602
+        },
+        {
+          "Asal": "SULAWESI TENGGARA",
+          "Jumlah": 7242.0,
+          "Tujuan": "PAPUA",
+          "lat_asal": -4.1449,
+          "lat_tujuan": -4.2699,
+          "lon_asal": 122.1746,
+          "lon_tujuan": 138.0804,
+          "width": 1.319844302984978
+        },
+        {
+          "Asal": "PAPUA BARAT",
+          "Jumlah": 5998.0,
+          "Tujuan": "PAPUA",
+          "lat_asal": -1.3361,
+          "lat_tujuan": -4.2699,
+          "lon_asal": 133.1747,
+          "lon_tujuan": 138.0804,
+          "width": 1.2649028071394501
+        }
+      ],
+      "getSourceColor": [
+        46,
+        204,
+        113,
+        200
+      ],
+      "getSourcePosition": "@@=[lon_asal, lat_asal]",
+      "getTargetColor": [
+        231,
+        76,
+        60,
+        200
+      ],
+      "getTargetPosition": "@@=[lon_tujuan, lat_tujuan]",
+      "getWidth": "@@=width",
+      "id": "9ae5b721-2ad2-480f-8307-72922710c8f8",
+      "pickable": true
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'text': '{Asal} ➔ {Tujuan}\nJumlah Migran: {Jumlah} Jiwa'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration,
+          });
+
+  </script>
+</html>
