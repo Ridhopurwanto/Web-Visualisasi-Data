@@ -312,7 +312,7 @@ def prepare_network_data():
 def prepare_multivariate_data():
     df_multi = pd.read_excel('data.xlsx', sheet_name='Multivariate')
     features = ['TPT', 'TPAK', 'PDRB per Kapita', 'Persentase Penduduk Miskin', 
-                'RLS', 'AHH', 'Melek Huruf', 'Gini Ratio', 'Kepadatan Penduduk', 'Laju pertumbuhan']
+                'RLS', 'AHH', 'IPM', 'Gini Ratio', 'Kepadatan Penduduk', 'Laju pertumbuhan']
     
     # Bersihkan spasi kosong
     df_multi = df_multi.dropna(subset=features + ['Pulau'])

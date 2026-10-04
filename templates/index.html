@@ -164,7 +164,7 @@
 
     <!-- Navbar -->
     <nav id="story-navbar">
-        <div class="nav-title">Dinamika Ketenagakerjaan 2025</div>
+        <div class="nav-title">Struktur Ketenagakerjaan</div>
         
         <!-- Tombol Kembali ke Atas yang diperbarui -->
         <button id="btn-back-to-top" class="btn-pill" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px;">
@@ -183,13 +183,13 @@
     <!-- Sampul Cerita -->
     <header class="hero-section">
         <div class="hero-content">
-            <h1 class="story-title">Menelusuri Arus Tenaga Kerja Nusantara</h1>
+            <h1 class="story-title">Menelusuri Struktur Tenaga Kerja Nusantara</h1>
             <p class="story-description">
-                Sebuah narasi visual berbasis data yang membedah komposisi, pergerakan, dan kemiripan struktural angkatan kerja di Indonesia. 
-                Web story ini dirancang untuk memandu Anda memahami dinamika pasar kerja melalui analisis geospasial, jaringan relasi, reduksi dimensi, hingga aliran migrasi secara interaktif.
+                Sebuah narasi visual berbasis data yang membedah komposisi, perubahan, dan kemiripan struktural angkatan kerja di Indonesia. 
+                Web story ini dirancang untuk memberikan visualisasi yang interaktif dalam memahami dinamika pasar kerja Indonesia melalui analisis geospasial, jaringan relasi, reduksi dimensi, hingga aliran migrasi secara interaktif.
             </p>
             <div class="scroll-indicator">
-                Gulir untuk Memulai<br><br>↓
+                Scroll untuk Memulai<br><br>↓
             </div>
         </div>
     </header>
@@ -199,7 +199,7 @@
         
         <!-- Bab 1: Hierarki Sektor (Icicle Chart) -->
         <div class="story-card" id="bab-1">
-            <span class="section-tag" style="color: #0072B2;">Bab 1: Anatomi Ketenagakerjaan</span>
+            <span class="section-tag" style="color: #0072B2;">Bab 1: Komposisi Ketenagakerjaan</span>
             <h2 style="margin-top:0; color: var(--primary);">Membelah Piramida Pekerja Nusantara</h2>
             
             <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
@@ -209,9 +209,12 @@
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-main);">
                         Dari total ratusan juta penduduk usia kerja (15 tahun ke atas) di Indonesia, tidak semuanya berpartisipasi dalam roda ekonomi. Grafik <strong>Icicle (Untai Es)</strong> di samping membongkar anatomi tersebut dari hulu ke hilir.
                     </p>
-                    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.7;">
-                        Membaca grafik ini mengandalkan dua elemen: <strong>Lebar Kotak</strong> menunjukkan besarnya populasi, sedangkan <strong>Warna Kotak</strong> menunjukkan tren pertumbuhan dibandingkan periode sebelumnya (Agustus 2025).
-                    </p>
+                    <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                        <li>Sebagian besar penduduk usia kerja adalah angkatan kerja dan memiliki pekerjaan</li>
+                        <li>Sektor pekerja informal masih mendominasi</li>
+                        <li>Sebagian besar bukan angkatan kerja mengurus rumah tangga</li>
+                        <li>Terdapat <strong>7,4 juta</strong> pengangguran, <strong>turun 2,92%</strong> dari periode sebelumnya</li>
+                    </ul>
             
                     <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #0072B2 0%, #0072b233 100%); margin-top: 30px;">
                         <!-- Efek Kaca (Glass) -->
@@ -225,7 +228,7 @@
                             
                             <ul style="font-size: 14px; color: #475569; margin: 0; padding-left: 20px; line-height: 1.8;">
                                 <li>Warna <strong>Biru</strong> = Pertumbuhan positif. Warna <strong>Oranye</strong> = Pertumbuhan negatif.</li>
-                                <li>Jejak navigasi (<em>breadcrumbs</em>) di bagian paling atas grafik berfungsi ganda sebagai tombol kembali (<em>back button</em>) saat Anda melakukan <em>zoom in</em>.</li>
+                                <li>Jejak navigasi (<em>breadcrumbs</em>) di bagian paling atas grafik berfungsi ganda sebagai tombol kembali (<em>back button</em>) saat melakukan <em>zoom in</em>.</li>
                             </ul>
                         </div>
                     </div>
@@ -254,22 +257,25 @@
                 <!-- Sisi Kanan: Narasi Web Story -->
                 <div style="flex: 1; min-width: 300px;">
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-main);">
-                        Setelah memahami struktur makro, kita bergerak lebih dalam ke profil demografis individual. Grafik <strong>Treemap</strong> di samping mengelompokkan tenaga kerja kita lapis demi lapis: dari aktivitas utama, kelompok umur, hingga membelah berdasarkan gender.
+                        Setelah memahami struktur makro, lanjut lebih dalam ke profil demografis individual. Grafik <strong>Treemap</strong> di samping mengelompokkan tenaga kerja lapis demi lapis: dari aktivitas utama, kelompok umur, hingga membelah berdasarkan gender.
                     </p>
-                    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.7;">
-                        Luas kotak mewakili populasi. Sementara itu, <strong>setiap warna merepresentasikan tingkat Ijazah Terakhir</strong>. Format visual ini menelanjangi ketimpangan pendidikan antar generasi maupun antar gender secara seketika.
-                    </p>
-                    
+                    <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                        <li>Penduduk yang bekerja didominasi oleh laki-laki usia 25 – 54</li>
+                        <li>Pada usia yang lebih tua, masih banyak pekerja yang memiliki ijazah SD ke bawah</li>
+                        <li>Pada usia muda, lebih banyak pekerja dengan dengan ijazah sekolah menengah atas</li>
+                        <li>Pengagguran paling banyak pada usia 15-24 tahun</li>
+                        <li>Pengganguran didominasi oleh lulusan sekolah menengah atas</li>
+
+                    </ul>
                     <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #009E73 0%, rgba(0,158,115,0.2) 100%);">
                         <div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 9px; padding: 20px 25px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);">
                             <strong style="color: #0F172A; display: flex; align-items: center; gap: 10px; font-size: 15px; margin-bottom: 12px;">
                                 <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#009E73; box-shadow: 0 0 8px #009E73;"></span>
-                                Interpretasi Kunci
+                                Petunjuk Interaktifitas Visualiasi
                             </strong>
                             <ul style="font-size: 14px; color: #475569; margin: 0; padding-left: 15px; line-height: 1.7;">
-                                <li><strong>Klik (Zoom) pada kotak Bekerja:</strong> Anda akan melihat bagaimana kelompok usia produktif tengah (25-34 tahun) mendominasi, lalu terbelah menjadi proporsi laki-laki dan perempuan.</li>
-                                <li><strong>Perhatikan Dominasi Warna:</strong> Bandingkan komposisi warna (Ijazah) pada kelompok usia tua (60+) dengan usia muda (15-24). Anda akan melihat transisi nyata peningkatan kualitas pendidikan nasional.</li>
-                                <li>Gunakan jejak navigasi (Breadcrumb) di atas grafik untuk kembali ke tampilan awal.</li>
+                                <li><strong>Klik (Zoom)</strong>pada kotak untuk melihat komposisi yang lebih detail dari suatu kelompok</li>
+                                <li>Gunakan <strong>Jejak navigasi (breadcrumbs)</strong> untuk kembali dan melihat struktur di atasnya</li>
                             </ul>
                         </div>
                     </div>
@@ -312,8 +318,14 @@
                     <!-- Narasi -->
                     <div style="flex: 1; min-width: 300px;">
                         <p style="font-size: 16px; line-height: 1.8; color: var(--text-main);">
-                            Peta batas wilayah (*Choropleth*) ini memvisualisasikan <strong>Tingkat Pengangguran Terbuka (TPT)</strong>. Semakin pekat warna oranye, semakin tinggi tekanan pengangguran di wilayah tersebut.
+                            Peta batas wilayah <strong>(Choropleth)</strong> ini memvisualisasikan <strong>Tingkat Pengangguran Terbuka (TPT)</strong>. Semakin pekat warna oranye, semakin tinggi tekanan pengangguran di wilayah tersebut.
                         </p>
+                        <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                            <li>TPT tertinggi di Kota Ambon <strong>(11,37)</strong> dan terendah di Puncak Papua Tengah <strong>(0,14)</strong> </li>
+                            <li>Daerah Banten hingga Jawa Barat memiliki TPT relatif tinggi terlihat dari warna yang lebih gelap </li>
+                            <li>Daerah di Sulawesi rata-rata memiliki warna lebih terang, TPT relatif rendah </li>
+
+                        </ul>
 
                         <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #D55E00 0%, rgba(213,94,0,0.2) 100%);">
                             <div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 9px; padding: 20px 25px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);">
@@ -321,9 +333,10 @@
                                     <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#D55E00; box-shadow: 0 0 8px #D55E00;"></span>
                                     Petunjuk Navigasi
                                 </strong>
-                                <p style="font-size: 14px; color: #475569; margin: 0; line-height: 1.6;">
-                                    Tekan <strong>ikon panah Chevron (>)</strong> di margin luar sebelah kanan untuk bergeser melihat Peta Simbol (Partisipasi Kerja).
-                                </p>
+                                <ul style="font-size: 14px; color: #475569; margin: 0; padding-left: 15px; line-height: 1.7;">
+                                    <li>Tekan <strong>ikon panah</strong> di sebelah kanan untuk bergeser melihat Peta Simbol (Partisipasi Kerja).</li>
+                                    <li>Zoom dan geser untuk melihat daerah lebih detail</li>
+                                </ul>
                             </div>
                         </div>
 
@@ -360,21 +373,22 @@
                     <!-- Narasi -->
                     <div style="flex: 1; min-width: 300px;">
                         <p style="font-size: 16px; line-height: 1.8; color: var(--text-main);">
-                            Peta Simbol ini secara tajam memisahkan wilayah mana yang mencatat <strong>Partisipasi Angkatan Kerja (TPAK)</strong> terendah dan tertinggi.
+                            Peta Simbol ini memisahkan wilayah mana yang mencatat <strong>Partisipasi Angkatan Kerja (TPAK)</strong> terendah dan tertinggi.
                         </p>
-                        <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
-                            <li><strong>Ukuran Simbol:</strong> Menggunakan <em>Min-Max Scaling</em> untuk merepresentasikan magnitudo TPAK.</li>
-                            <li><strong>Warna Simbol:</strong> Warna <span style="color: #0072B2; font-weight: bold;">Biru</span> (Top-K Tertinggi) dan <span style="color: #D55E00; font-weight: bold;">Oranye</span> (Top-K Terendah).</li>
-                        </ul>
+                        <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.7;">
+                            Sebagian Besar TPAK tertinggi berada di daerah Papua dan Sulawesi baik untuk laki-laki maupun perempuan
+                        </p>
                         <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #0072B2 0%, rgba(0,114,178,0.2) 100%); margin-top: 20px;">
                             <div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 9px; padding: 20px 25px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);">
                                 <strong style="color: #0F172A; display: flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 10px;">
                                     <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#0072B2; box-shadow: 0 0 8px #0072B2;"></span>
-                                    Analisis Instan
+                                    Catatan dan petunjuk
                                 </strong>
-                                <p style="font-size: 14px; color: #475569; margin: 0; line-height: 1.6;">
-                                    Ganti <em>filter</em> gender menjadi "Perempuan". Anda akan melihat gelembung partisipasi meledak (membesar drastis) di provinsi-provinsi pedesaan/agraris seperti Bali atau Nusa Tenggara, mengungkap fakta bahwa perempuan memiliki kemandirian ekonomi tinggi di luar sektor perkotaan.
-                                </p>
+                                <ul style="font-size: 14px; color: #475569; margin: 0; padding-left: 15px; line-height: 1.7;">
+                                    <li>Menggunakan Min-Max Scaling untuk merepresentasikan magnitudo TPAK </li>
+                                    <li>Pilih TPAK laki-laki atau perempuan dan jumlah titik pada filter di atas peta</li>
+                                    <li>Nilai K meunjukkan berapa banyak kabupaten dengan TPAK tertinggi dan TPAK terendah yang akan ditampilkan</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -389,7 +403,7 @@
 
         <!-- Bab 4: Analisis Jaringan (Network) -->
         <div class="story-card" id="bab-4">
-            <span class="section-tag" style="color: #9B59B6;">Bab 4: Kekerabatan Ekonomi</span>
+            <span class="section-tag" style="color: #9B59B6;">Bab 4: Kemiripan Tingkat Pengangguran</span>
             <h2 style="margin-top:0; color: var(--primary);">Jaring Kemiripan Karakteristik Wilayah</h2>
             
             <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
@@ -397,11 +411,12 @@
                 <!-- Sisi Kiri: Narasi Web Story -->
                 <div style="flex: 1; min-width: 300px;">
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-main);">
-                        Peta geospasial membatasi kita pada wilayah yang bersebelahan fisik. Namun, bagaimana jika kita menghubungkan provinsi berdasarkan <strong>kemiripan masalah ekonominya</strong> tanpa memedulikan jarak geografis?
+                        Peta geospasial memberi batasan hanya pada wilayah yang bersebelahan fisik. Namun, bagaimana jika provinsi dihubungkan berdasarkan <strong>kemiripan masalah ekonominya</strong> tanpa memedulikan jarak geografis?
                     </p>
-                    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.7;">
-                        Grafik jaringan <em>(Network)</em> di samping menggunakan pendekatan <em>Euclidean Distance</em>. Sebuah garis imajiner akan terhubung antar provinsi jika selisih Tingkat Pengangguran Terbuka (TPT) mereka sangat tipis (di bawah 0,3%).
-                    </p>
+                    <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                        <li>Terbentuk beberapa kelompok, daerah dengan TPT tertinggi dan terendah membentuk kelompok sendiri </li>
+                        <li>Pengangguran masih menjadi masalah di seluruh daerah </li>
+                    </ul>
                     
                     <!-- Kotak Interpretasi -->
                     <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #9B59B6 0%, rgba(155,89,182,0.2) 100%);">
@@ -411,6 +426,7 @@
                                 Panduan Membaca Simpul
                             </strong>
                             <ul style="font-size: 14px; color: #475569; margin: 0; padding-left: 15px; line-height: 1.7;">
+                                <li>Grafik jaringan <em>(Network)</em> di samping menggunakan pendekatan <em>Euclidean Distance</em>. Sebuah garis imajiner akan terhubung antar provinsi jika selisih Tingkat Pengangguran Terbuka (TPT) mereka sangat tipis (di bawah 0,3%).</li>
                                 <li><strong>Ukuran Lingkaran (Node):</strong> Semakin besar lingkaran sebuah provinsi, semakin banyak wilayah lain yang memiliki kemiripan identik dengannya <em>(Degree Centrality)</em>.</li>
                                 <li><strong>Warna:</strong> Provinsi berwarna <span style="color: #0072B2; font-weight: bold;">Biru</span> berada pada zona TPT rendah yang aman, sedangkan warna <span style="color: #D55E00; font-weight: bold;">Oranye Terang</span> adalah zona waspada tinggi.</li>
                                 <li>Anda bebas menggeser, menarik, atau melakukan <em>zoom</em> pada jaring-jaring fisika ini.</li>
@@ -431,10 +447,10 @@
         <!-- Bab 5: Analisis Multivariat -->
         <div class="story-card" id="bab-5">
             <span class="section-tag" style="color: #CC79A7;">Bab 5: Multivariat Geososial</span>
-            <h2 style="margin-top:0; color: var(--primary);">Membedah DNA Ekonomi Tiap Wilayah</h2>
+            <h2 style="margin-top:0; color: var(--primary);">Membedah Karakteristik Tiap Wilayah</h2>
             
             <p style="font-size: 16px; line-height: 1.8; color: var(--text-main); margin-bottom: 25px;">
-                Dunia nyata tidak hanya ditentukan oleh satu metrik. Melalui analisis <em>Principal Component Analysis (PCA)</em>, kita meringkas 10 indikator makroekonomi menjadi peta karakteristik wilayah dua dimensi. Semakin berdekatan dua titik, semakin identik "DNA" ekonomi mereka.
+                Kondisi sebenarnya tidak hanya ditentukan oleh satu metrik. Melalui analisis <em>Principal Component Analysis (PCA)</em>, 10 indikator sosial-ekonomi diringkas menjadi peta karakteristik wilayah dua dimensi. Semakin berdekatan dua titik, semakin identik karakteristik mereka.
             </p>
 
             <!-- TATA LETAK GRID (Grafik di Atas) -->
@@ -458,6 +474,11 @@
                 </div>
             </div>
 
+            <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                <li>DKI Jakarta, Papua, dan Papua Tengah memiliki karakteristik yang berbeda dari yang lainnya </li>
+                <li>Pada provinsi TPT tinggi, umumnya TPAK dan pendapatan per kapita nya rendah kecuali DKI Jakarta </li>
+                <li>Untuk karakteristik lainnya cukup menyebar </li>
+            </ul>
             <!-- INTERPRETASI & STORYTELLING (Di Bawah Grafik) -->
             <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #CC79A7 0%, rgba(204,121,167,0.2) 100%);">
                 <div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 9px; padding: 20px 25px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);">
@@ -466,10 +487,11 @@
                         Panduan Interaksi (Brushing & Linking)
                     </strong>
                     <ul style="font-size: 15px; color: #475569; margin: 0; padding-left: 20px; line-height: 1.8;">
-                        <li>Gunakan kursor Anda untuk menyeret dan membuat kotak seleksi (<em>Box Select</em>) pada beberapa titik yang mengelompok di grafik <strong>PCA Scatter Plot</strong>.</li>
-                        <li><strong>Reaksi Grafik Radar:</strong> Jaring laba-laba yang rumit akan seketika berubah menjadi satu bentuk poligon tunggal berwarna oranye. Poligon ini merupakan <strong>nilai agregasi (rata-rata)</strong> khusus untuk provinsi-provinsi yang baru saja Anda seleksi.</li>
-                        <li><strong>Reaksi Parallel Coordinates:</strong> Garis-garis yang rumit akan meredup, hanya menyorot dan mengikuti jejak indikator provinsi yang Anda pilih.</li>
+                        <li>Gunakan kursor untuk menyeret dan membuat kotak seleksi (<em>Box Select</em>) pada beberapa titik yang mengelompok di grafik <strong>PCA Scatter Plot</strong>.</li>
+                        <li><strong>Grafik Radar</strong> membentuk poligon berdasrkan pulau yang nilainya merupakan<strong>agregasi (rata-rata)</strong> provinsi-provinsi di pulau tersebut.</li>
+                        <li>Garis-garis pada <strong>Parallel Coordinates</strong> akan meredup, hanya menyorot dan mengikuti jejak indikator provinsi yang dipilih.</li>
                         <li><em>Klik ganda (double-click) pada area putih di PCA untuk membatalkan seleksi dan mereset semua grafik.</em></li>
+                        <li>Klik nama pulau pada scatter PCA untuk menampilkan dan menyembunyikan titik pada pulau tersebut.</li>
                     </ul>
                 </div>
             </div>
@@ -478,7 +500,7 @@
         <!-- Bab 6: Mobilitas & Migrasi (Flow Map) -->
         <div class="story-card" id="bab-6">
             <span class="section-tag" style="color: #0072B2;">Bab 6: Dinamika Migrasi Spasial</span>
-            <h2 style="margin-top:0; color: var(--primary);">Jejak Eksodus dan Kedatangan Tenaga Kerja</h2>
+            <h2 style="margin-top:0; color: var(--primary);">Jejak Eksodus dan Kedatangan Penduduk</h2>
             
             <p style="font-size: 16px; line-height: 1.8; color: var(--text-main); margin-bottom: 20px;">
                 Mobilitas penduduk merepresentasikan reaksi logis terhadap kesenjangan ekonomi. Wilayah dengan tekanan pengangguran (TPT) tinggi cenderung memicu arus keluar, sementara wilayah dengan PDRB tinggi bertindak sebagai magnet penarik.
@@ -521,7 +543,12 @@
             <div style="position: relative;">
                 <div id="flow-chart" style="height: 550px; width: 100%; border: 1px solid var(--border-color); border-radius: 12px; background-color: #FDFDFD; overflow: hidden;"></div>
             </div>
-
+            
+            <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+               <li>Banyak perpindahan terjadi antar daerah yang berdekatan</li>
+               <li>Daerah maju bisa memiliki arus masuk yang tinggi karena banyak orang pindah kesana untuk mendapatkan kehidupan yang lebih baik </li>
+               <li>Daerah yang berkembang juga memiliki daya tarik dimana banyak orang mencari kesempatan baru disana </li>
+            </ul>
             <!-- INTERPRETASI & STORYTELLING -->
             <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #0072B2 0%, rgba(0,114,178,0.2) 100%); margin-top: 25px;">
                 <div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 9px; padding: 20px 25px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);">
@@ -530,9 +557,10 @@
                         Cara Membaca Pola Migrasi
                     </strong>
                     <ul style="font-size: 15px; color: #475569; margin: 0; padding-left: 20px; line-height: 1.8;">
-                        <li><strong>Batas Wilayah (Basemap):</strong> Peta dasar menampilkan lekuk batas ke-38 provinsi di Indonesia secara presisi sebagai acuan geografis pendaratan migran.</li>
                         <li><strong>Ketebalan Garis:</strong> Semakin tebal sebuah pita garis, semakin masif volume jiwa yang berpindah melalui rute tersebut.</li>
-                        <li><strong>Analisis Dua Arah:</strong> Peta ini menayangkan arus masuk (<span style="color:#0072B2; font-weight:bold;">Biru</span>) dan arus keluar (<span style="color:#D55E00; font-weight:bold;">Oranye</span>) secara serentak. Cobalah pilih pusat pantau <strong>Jawa Tengah</strong> atau <strong>DKI Jakarta</strong>, dan Anda akan melihat fenomena <em>"Brain Drain"</em> di mana satu rute didominasi oleh warna eksodus, sementara rute lainnya didominasi warna kedatangan.</li>
+                        <li><strong>Analisis Dua Arah:</strong> Peta ini menayangkan arus masuk (<span style="color:#0072B2; font-weight:bold;">Biru</span>) dan arus keluar (<span style="color:#D55E00; font-weight:bold;">Oranye</span>) secara serentak.</li>
+                        <li>Gunakan filter di atas peta untuk melihat arus masuk-keluar suatu provinsi dan top-K</li>
+                        <li>Nilai K menunjukkan berapa banyak provinsi asal dan tujuan yang akan ditampilkan berdasarkan arus terbanyak.</li>
                     </ul>
                 </div>
             </div>
@@ -555,7 +583,11 @@
                     <p style="font-size: 16px; line-height: 1.8; color: var(--text-main);">
                         Migrasi tidak hanya melintasi batas geografis, tetapi juga menembus batas keahlian. Grafik ini merekam arus pekerja yang "banting setir" beralih dari satu sektor pekerjaan ke sektor lainnya.
                     </p>
-                    
+                    <ul style="font-size: 15px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+                        <li>Sebagian besar masih bertahan di sektor yang sama  </li>
+                        <li>Pertanian dan perdagangan menjadi sektor tujuan yang populer </li>
+                        <li>Pengadaan listrik dan Real Estate menjadi sektor yang ditinggalkan </li>
+                    </ul>
                     <div style="position: relative; padding: 3px; border-radius: 12px; background: linear-gradient(135deg, #E69F00 0%, rgba(230,159,0,0.2) 100%); margin-top: 20px;">
                         <div style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 9px; padding: 20px 25px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);">
                             <strong style="color: #0F172A; display: flex; align-items: center; gap: 10px; font-size: 15px; margin-bottom: 12px;">
@@ -565,7 +597,7 @@
                             <ul style="font-size: 14px; color: #475569; margin: 0; padding-left: 15px; line-height: 1.7;">
                                 <li><strong>Arah Panah:</strong> Perhatikan ujung pita yang meruncing (seperti panah). Pita tersebut mengindikasikan bahwa transisi bersifat <strong>satu arah</strong> (Dari sektor asal ➔ Ke sektor tujuan).</li>
                                 <li><strong>Warna Pita:</strong> Warna pita selalu mengikuti warna sektor asal (tempat pekerja tersebut pergi meninggalkan).</li>
-                                <li><strong>Efek Sorotan (Hover):</strong> Arahkan kursor Anda ke salah satu nama label (misal: "Perdagangan") di tepi lingkaran. Sektor yang tidak berhubungan akan otomatis meredup, menyisakan pita arus keluar-masuk khusus untuk sektor tersebut.</li>
+                                <li><strong>Efek Sorotan (Hover):</strong> Arahkan kursor ke salah satu nama label (misal: "Perdagangan") di tepi lingkaran. Sektor yang tidak berhubungan akan otomatis meredup, menyisakan pita arus keluar-masuk khusus untuk sektor tersebut.</li>
                             </ul>
                         </div>
                     </div>
@@ -580,7 +612,7 @@
             <h2 style="color: var(--primary); margin-top: 0; margin-bottom: 20px; font-size: 28px; letter-spacing: -0.5px;">Merajut Narasi di Balik Angka</h2>
             
             <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); max-width: 750px; margin: 0 auto 35px auto;">
-                Perjalanan data ini membuktikan bahwa dinamika ketenagakerjaan bukanlah entitas tunggal. Dari anatomi demografi hingga jaring-jaring eksodus lintas wilayah, setiap daerah memiliki DNA ekonomi yang unik. Visualisasi ini dirancang bukan sekadar untuk dilihat, melainkan untuk memicu diskursus, merumuskan kebijakan yang presisi, dan membawa wawasan data mentah ke panggung diskusi yang lebih luas.
+                Perjalanan data ini membuktikan bahwa dinamika ketenagakerjaan bukanlah entitas tunggal. Dari anatomi demografi hingga jaring-jaring eksodus lintas wilayah, setiap daerah memiliki karakteristik sosial-ekonomi yang unik. Visualisasi ini dirancang bukan sekadar untuk dilihat, melainkan untuk memicu diskursus, merumuskan kebijakan yang presisi, dan membawa wawasan data mentah ke panggung diskusi yang lebih luas.
             </p>
             
             <!-- Etalase Metrik Proyek -->
@@ -608,8 +640,8 @@
 
         <!-- Footer Web Murni -->
         <footer style="text-align: center; padding: 40px 20px 20px 20px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border-color); margin-top: 40px;">
-            <p style="margin: 0; font-weight: 500;">&copy; 2026 Dasbor Geososial & Ketenagakerjaan Indonesia.</p>
-            <p style="margin: 5px 0 0 0; font-size: 13px;">Diperkuat oleh infrastruktur Flask, Plotly.js, D3.js, dan Vis.js.</p>
+            <p style="margin: 0; font-weight: 500;">&copy; 2026 Web Story Struktur Ketenagakerjaan Indonesia.</p>
+            <p style="margin: 5px 0 0 0; font-size: 13px;">Dibuat dengan Flask, Plotly.js, D3.js, dan Vis.js.</p>
         </footer>
     </main>
 
