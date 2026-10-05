@@ -155,6 +155,55 @@
             font-size: 13px !important;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
         }
+        /* === RESPONSIVITAS MOBILE (MAKS 768px) === */
+        @media (max-width: 768px) {
+            /* 1. Penyesuaian Tipografi & Navbar */
+            #story-navbar { padding: 12px 15px; }
+            .nav-title { font-size: 13px; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            #btn-back-to-top { font-size: 12px; padding: 6px 10px !important; }
+            .story-title { font-size: 32px; }
+            .story-description { font-size: 15px; margin-bottom: 30px; }
+            h2 { font-size: 20px !important; line-height: 1.4; }
+            
+            /* 2. Pemadatan Ruang (Padding & Margin) */
+            .story-container { padding: 20px 10px; }
+            .story-card { padding: 25px 15px !important; margin-bottom: 30px; }
+            .hero-content { padding: 25px 15px; width: 90%; }
+            
+            /* 3. Menghancurkan Flexbox Horizontal menjadi Vertikal */
+            div[style*="min-width: 400px"],
+            div[style*="min-width: 450px"],
+            div[style*="min-width: 300px"],
+            div[style*="min-width: 250px"],
+            div[style*="min-width: 200px"] {
+                min-width: 100% !important;
+                flex: 100% !important;
+            }
+
+            /* 4. Menghancurkan Grid Bab 5 menjadi 1 Kolom */
+            div[style*="grid-template-columns: 1fr 1fr;"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* 5. Penyesuaian Tinggi Grafik Plotly/Vis/D3 untuk Layar Kecil */
+            div[id$="-chart"] {
+                height: 350px !important; 
+            }
+            #network-chart { height: 450px !important; }
+            #chord-chart { height: 400px !important; }
+            
+            /* 6. Penyesuaian Tombol Carousel (Bab 3) agar tidak keluar layar */
+            #bab-3 { padding: 30px 15px !important; }
+            #btn-prev { left: -5px !important; padding: 5px !important; }
+            #btn-next { right: -5px !important; padding: 5px !important; }
+            
+            /* 7. Merapikan Panel Kontrol Flow Map (Bab 6) */
+            div[style*="flex-direction: row; flex-wrap: wrap; gap: 25px;"] {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 15px !important;
+            }
+        }
     </style>
 </head>
 <body>
