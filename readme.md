@@ -86,3 +86,6 @@ pip install -r requirements.txt
 python app.py
 ```
 Buka browser dan akses http://127.0.0.1:5000/.
+
+## Link web story
+https://ridho29.pythonanywhere.com/
